@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  double _n;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,7 +19,16 @@ class MyApp extends StatelessWidget {
           title: Text('Conversor de medidas'),
         ),
         body: Center(
-          child: Text('Mesures convertes'),
+          child: TextField(
+            onChanged: (text) {
+              var rv = double.tryParse(text);
+              if (rv != null) {
+                setState(() {
+                  _n = rv;
+                });
+              }
+            },
+          ),
         ),
       ),
     );
